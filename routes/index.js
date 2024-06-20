@@ -8,7 +8,9 @@ import jwtAuthMiddleware from "../middlewares/jwtAuthMiddleware.js";
 const router = express.Router();
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
+import cors from "cors"
 
+app.use(cors());
 router.use(cookieParser());
 
 router.get("/", (req, res) => {
