@@ -1,21 +1,23 @@
 import express from "express";
 import "dotenv/config";
-import indexRouter from "./routes/index.js";
-import cors from "cors"
+import cors from "cors";
 import cookieParser from "cookie-parser";
-import db from "./db/db.js";
+
+import indexRouter from "./routes/index.js";
+import db from "./db/db.js"; // Ensure this properly sets up the database connection
 
 const app = express();
-const port = process.env.PORT || 4000
+const port = process.env.PORT || 4000; // Default to port 3000 if PORT is not specified
 
+// Middleware setup
 app.use(cors());
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-//routes
+// Routes
 app.use("/", indexRouter);
 
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
-})
+});
